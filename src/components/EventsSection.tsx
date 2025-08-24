@@ -1,7 +1,26 @@
-import { Calendar, Clock, MapPin, Users, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import {
+  Box,
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+  Grid,
+  Chip,
+  useTheme,
+} from '@mui/material';
+import {
+  CalendarToday as CalendarTodayIcon,
+  AccessTime as AccessTimeIcon,
+  LocationOn as LocationOnIcon,
+  Group as GroupIcon,
+  ArrowForward as ArrowForwardIcon,
+} from '@mui/icons-material';
+import { colors } from '@/theme/theme';
 
 const EventsSection = () => {
+  const theme = useTheme();
+
   const events = [
     {
       id: 1,
@@ -10,11 +29,12 @@ const EventsSection = () => {
       time: '12:30',
       endTime: '13:15',
       location: 'Main Prayer Hall',
-      description: 'Weekly Friday prayer with sermon focusing on community building and showing compassion to our neighbors.',
+      description:
+        'Weekly Friday prayer with sermon focusing on community building and showing compassion to our neighbors.',
       capacity: 200,
       registered: 45,
       category: 'Prayer',
-      featured: true
+      featured: true,
     },
     {
       id: 2,
@@ -23,11 +43,12 @@ const EventsSection = () => {
       time: '15:00',
       endTime: '16:30',
       location: 'Youth Room',
-      description: 'Interactive Quran study session for youth ages 13-18. This week: Understanding Surah Al-Fatiha.',
+      description:
+        'Interactive Quran study session for youth ages 13-18. This week: Understanding Surah Al-Fatiha.',
       capacity: 25,
       registered: 18,
       category: 'Education',
-      featured: false
+      featured: false,
     },
     {
       id: 3,
@@ -36,11 +57,12 @@ const EventsSection = () => {
       time: '18:00',
       endTime: '21:00',
       location: 'Community Hall',
-      description: 'Join us for a community iftar dinner followed by a presentation about our new mosque expansion project.',
+      description:
+        'Join us for a community iftar dinner followed by a presentation about our new mosque expansion project.',
       capacity: 150,
       registered: 89,
       category: 'Community',
-      featured: true
+      featured: true,
     },
     {
       id: 4,
@@ -49,38 +71,41 @@ const EventsSection = () => {
       time: '19:00',
       endTime: '20:30',
       location: 'Main Hall',
-      description: 'Monthly lecture series exploring Islamic civilization. This month: The Golden Age of Islamic Science.',
+      description:
+        'Monthly lecture series exploring Islamic civilization. This month: The Golden Age of Islamic Science.',
       capacity: 80,
       registered: 32,
       category: 'Education',
-      featured: false
+      featured: false,
     },
     {
       id: 5,
-      title: 'Women\'s Circle - Spiritual Growth',
+      title: "Women's Circle - Spiritual Growth",
       date: '2024-09-01',
       time: '10:00',
       endTime: '12:00',
-      location: 'Sisters\' Lounge',
-      description: 'Monthly gathering for sisters to discuss spiritual growth, share experiences, and build sisterhood.',
+      location: "Sisters' Lounge",
+      description:
+        'Monthly gathering for sisters to discuss spiritual growth, share experiences, and build sisterhood.',
       capacity: 30,
       registered: 22,
       category: 'Community',
-      featured: false
+      featured: false,
     },
     {
       id: 6,
-      title: 'Children\'s Islamic School Open House',
+      title: "Children's Islamic School Open House",
       date: '2024-09-05',
       time: '14:00',
       endTime: '17:00',
       location: 'Education Wing',
-      description: 'Visit our weekend Islamic school, meet teachers, and learn about our curriculum for children ages 5-15.',
+      description:
+        'Visit our weekend Islamic school, meet teachers, and learn about our curriculum for children ages 5-15.',
       capacity: 100,
       registered: 67,
       category: 'Education',
-      featured: true
-    }
+      featured: true,
+    },
   ];
 
   const formatDate = (dateString: string) => {
@@ -88,7 +113,7 @@ const EventsSection = () => {
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -103,135 +128,268 @@ const EventsSection = () => {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'Prayer':
-        return 'bg-green-700 text-white';
+        return {
+          backgroundColor: colors.green[700],
+          color: '#ffffff',
+        };
       case 'Education':
-        return 'bg-info text-white';
+        return {
+          backgroundColor: colors.info,
+          color: '#ffffff',
+        };
       case 'Community':
-        return 'bg-gold-500 text-white';
+        return {
+          backgroundColor: colors.gold[500],
+          color: '#ffffff',
+        };
       default:
-        return 'bg-ink-600 text-white';
+        return {
+          backgroundColor: colors.ink[600],
+          color: '#ffffff',
+        };
     }
   };
 
   return (
-    <section id="events" className="py-16 md:py-24 bg-beige-50">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+    <Box
+      id="events"
+      sx={{
+        py: { xs: 8, md: 12 },
+        backgroundColor: colors.beige[50],
+      }}
+    >
+      <Container maxWidth="xl">
+        <Box sx={{ maxWidth: '100%' }}>
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 700,
+                fontSize: { xs: '2rem', md: '2.5rem' },
+                mb: 2,
+              }}
+            >
               Upcoming Events
-            </h2>
-            <p className="text-lg text-ink-600 max-w-2xl mx-auto font-body">
-              Join us for prayer, learning, and community building. Everyone is welcome to participate in our programs.
-            </p>
-          </div>
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'text.secondary',
+                maxWidth: '600px',
+                mx: 'auto',
+                fontWeight: 400,
+              }}
+            >
+              Join us for prayer, learning, and community building. Everyone is
+              welcome to participate in our programs.
+            </Typography>
+          </Box>
 
           {/* Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          <Grid container spacing={3} sx={{ mb: 8 }}>
             {events.map((event) => (
-              <div
-                key={event.id}
-                className={`bg-card rounded-card shadow-card border border-beige-200 overflow-hidden transition-all duration-250 ease-smooth hover:shadow-hover hover:-translate-y-1 ${
-                  event.featured ? 'ring-2 ring-green-200' : ''
-                }`}
-              >
-                {/* Event Header */}
-                <div className="p-6 pb-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className={`px-3 py-1 rounded-full text-xs font-body font-medium ${getCategoryColor(event.category)}`}>
-                      {event.category}
-                    </div>
-                    {event.featured && (
-                      <div className="bg-gold-100 text-gold-500 px-2 py-1 rounded-full text-xs font-body font-medium">
-                        Featured
-                      </div>
-                    )}
-                  </div>
-                  
-                  <h3 className="font-heading font-semibold text-lg text-foreground mb-3 leading-tight">
-                    {event.title}
-                  </h3>
-                  
-                  <p className="text-ink-600 font-body text-sm leading-relaxed mb-4">
-                    {event.description}
-                  </p>
-                </div>
+              <Grid xs={12} md={6} lg={4} key={event.id}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    border: `1px solid ${colors.beige[200]}`,
+                    borderRadius: 2,
+                    overflow: 'hidden',
+                    transition: 'all 0.25s ease',
+                    outline: event.featured
+                      ? `2px solid ${colors.green[200]}`
+                      : 'none',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: 4,
+                    },
+                  }}
+                >
+                  {/* Event Header */}
+                  <CardContent sx={{ flex: 1, pb: 2 }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        justifyContent: 'space-between',
+                        mb: 2,
+                      }}
+                    >
+                      <Chip
+                        label={event.category}
+                        size="small"
+                        sx={{
+                          ...getCategoryColor(event.category),
+                          fontWeight: 500,
+                        }}
+                      />
+                      {event.featured && (
+                        <Chip
+                          label="Featured"
+                          size="small"
+                          sx={{
+                            backgroundColor: colors.gold[100],
+                            color: colors.gold[500],
+                            fontWeight: 500,
+                          }}
+                        />
+                      )}
+                    </Box>
 
-                {/* Event Details */}
-                <div className="px-6 pb-4 space-y-3">
-                  <div className="flex items-center space-x-3 text-sm text-ink-600">
-                    <Calendar className="w-4 h-4 text-green-500" />
-                    <span className="font-body">
-                      {formatDate(event.date)}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 text-sm text-ink-600">
-                    <Clock className="w-4 h-4 text-green-500" />
-                    <span className="font-body tabular-nums">
-                      {formatTime(event.time)} – {formatTime(event.endTime)}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 text-sm text-ink-600">
-                    <MapPin className="w-4 h-4 text-green-500" />
-                    <span className="font-body">{event.location}</span>
-                  </div>
-                  
-                  <div className="flex items-center space-x-3 text-sm text-ink-600">
-                    <Users className="w-4 h-4 text-green-500" />
-                    <span className="font-body">
-                      {event.registered} / {event.capacity} registered
-                    </span>
-                  </div>
-                </div>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        mb: 2,
+                        lineHeight: 1.3,
+                        fontSize: '1.125rem',
+                      }}
+                    >
+                      {event.title}
+                    </Typography>
 
-                {/* Event Footer */}
-                <div className="px-6 py-4 bg-green-50 border-t border-beige-200">
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs text-ink-600 font-body">
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: 'text.secondary',
+                        lineHeight: 1.5,
+                        mb: 3,
+                      }}
+                    >
+                      {event.description}
+                    </Typography>
+
+                    {/* Event Details */}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <CalendarTodayIcon
+                          sx={{ fontSize: 16, color: colors.green[500] }}
+                        />
+                        <Typography variant="body2" color="text.secondary">
+                          {formatDate(event.date)}
+                        </Typography>
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <AccessTimeIcon
+                          sx={{ fontSize: 16, color: colors.green[500] }}
+                        />
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{ fontVariantNumeric: 'tabular-nums' }}
+                        >
+                          {formatTime(event.time)} – {formatTime(event.endTime)}
+                        </Typography>
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <LocationOnIcon
+                          sx={{ fontSize: 16, color: colors.green[500] }}
+                        />
+                        <Typography variant="body2" color="text.secondary">
+                          {event.location}
+                        </Typography>
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <GroupIcon
+                          sx={{ fontSize: 16, color: colors.green[500] }}
+                        />
+                        <Typography variant="body2" color="text.secondary">
+                          {event.registered} / {event.capacity} registered
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CardContent>
+
+                  {/* Event Footer */}
+                  <Box
+                    sx={{
+                      px: 3,
+                      py: 2,
+                      backgroundColor: colors.green[50],
+                      borderTop: `1px solid ${colors.beige[200]}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Typography variant="caption" color="text.secondary">
                       {event.capacity - event.registered} spots left
-                    </div>
-                    <Button variant="outline" size="sm" className="text-xs">
+                    </Typography>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      endIcon={<ArrowForwardIcon sx={{ fontSize: 14 }} />}
+                      sx={{
+                        fontSize: '0.75rem',
+                        py: 0.5,
+                        px: 1.5,
+                      }}
+                    >
                       Details
-                      <ArrowRight className="w-3 h-3 ml-1" />
                     </Button>
-                  </div>
-                </div>
-              </div>
+                  </Box>
+                </Card>
+              </Grid>
             ))}
-          </div>
+          </Grid>
 
           {/* View All Events Button */}
-          <div className="text-center">
-            <Button variant="primary" size="lg">
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Button
+              variant="contained"
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              sx={{ px: 4, py: 1.5 }}
+            >
               View All Events
-              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-          </div>
+          </Box>
 
           {/* Event Categories Filter */}
-          <div className="mt-12 bg-card rounded-card p-6 shadow-card border border-beige-200">
-            <h3 className="font-heading font-semibold text-foreground mb-4">
-              Browse by Category
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {['All Events', 'Prayer', 'Education', 'Community', 'Youth', 'Women', 'Children'].map((category) => (
-                <Button
-                  key={category}
-                  variant="outline"
-                  size="sm"
-                  className="text-sm"
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <Card
+            sx={{
+              border: `1px solid ${colors.beige[200]}`,
+            }}
+          >
+            <CardContent>
+              <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>
+                Browse by Category
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5 }}>
+                {[
+                  'All Events',
+                  'Prayer',
+                  'Education',
+                  'Community',
+                  'Youth',
+                  'Women',
+                  'Children',
+                ].map((category) => (
+                  <Button
+                    key={category}
+                    variant="outlined"
+                    size="small"
+                    sx={{
+                      fontSize: '0.875rem',
+                      py: 0.5,
+                      px: 2,
+                    }}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
