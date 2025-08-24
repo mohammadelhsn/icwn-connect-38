@@ -1,37 +1,11 @@
 import { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Box,
-  Typography,
-  Button,
-  IconButton,
-  TextField,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
-  Container,
-  Collapse,
-  useMediaQuery,
-  useTheme,
-  InputAdornment,
-} from '@mui/material';
-import {
-  Menu as MenuIcon,
-  Close as CloseIcon,
-  Search as SearchIcon,
-  LocationOn as LocationOnIcon,
-  Phone as PhoneIcon,
-  AccessTime as AccessTimeIcon,
-} from '@mui/icons-material';
-import { colors } from '@/theme/theme';
+import { Menu, X, Search, MapPin, Phone, Clock } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
@@ -46,306 +20,173 @@ const Navigation = () => {
   ];
 
   return (
-    <Box sx={{ position: 'sticky', top: 0, zIndex: 50 }}>
-      {/* Top contact bar */}
-      <Box
-        sx={{
-          backgroundColor: colors.green[50],
-          borderBottom: `1px solid ${colors.beige[200]}`,
-          display: { xs: 'none', md: 'block' },
-        }}
-      >
-        <Container maxWidth="xl">
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              py: 1,
-              fontSize: '0.875rem',
-              color: colors.ink[600],
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <LocationOnIcon sx={{ fontSize: 16, color: colors.green[500] }} />
-                <Typography variant="body2">123 Community Ave, Niagara Falls, ON</Typography>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <PhoneIcon sx={{ fontSize: 16, color: colors.green[500] }} />
-                <Typography variant="body2">(905) 123-4567</Typography>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <AccessTimeIcon sx={{ fontSize: 16, color: colors.green[500] }} />
-              <Typography variant="body2">Next Prayer: Asr • 3:45 PM</Typography>
-            </Box>
-          </Box>
-        </Container>
-      </Box>
+    <nav className="sticky top-0 z-50 bg-background border-b border-beige-200 shadow-card">
+      {/* Top bar with contact info */}
+      <div className="bg-green-50 border-b border-beige-200 hidden md:block">
+        <div className="container mx-auto px-4 py-2">
+          <div className="flex items-center justify-between text-sm text-ink-600">
+            <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4 text-green-500" />
+                <span>123 Community Ave, Niagara Falls, ON</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-green-500" />
+                <span>(905) 123-4567</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Clock className="w-4 h-4 text-green-500" />
+              <span>Next Prayer: Asr • 3:45 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Main navigation */}
-      <AppBar position="static" elevation={1}>
-        <Container maxWidth="xl">
-          <Toolbar sx={{ minHeight: 64 }}>
-            {/* Logo */}
-            <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
-              <Box
-                component="a"
-                href="#"
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1.5,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                }}
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <a href="#" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-heading font-bold text-lg">
+                  ICWN
+                </span>
+              </div>
+              <div className="hidden sm:block">
+                <div className="font-heading font-bold text-foreground text-lg">
+                  Islamic Centre
+                </div>
+                <div className="text-ink-600 text-sm -mt-1">of West Niagara</div>
+              </div>
+            </a>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-ink-600 hover:text-foreground transition-all duration-250 ease-smooth font-body font-medium hover:underline"
               >
-                <Box
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    backgroundColor: 'primary.main',
-                    borderRadius: 1.5,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: 'primary.contrastText',
-                      fontWeight: 700,
-                      fontSize: '1.125rem',
-                    }}
-                  >
-                    ICWN
-                  </Typography>
-                </Box>
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 700,
-                      fontSize: '1.125rem',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    Islamic Centre
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'text.secondary',
-                      fontSize: '0.875rem',
-                      mt: -0.5,
-                    }}
-                  >
-                    of West Niagara
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+                {link.name}
+              </a>
+            ))}
+          </div>
 
-            {/* Desktop Navigation */}
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>
-              <Box sx={{ display: 'flex', gap: 4 }}>
-                {navLinks.map((link) => (
-                  <Button
-                    key={link.name}
-                    href={link.href}
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 500,
-                      textTransform: 'none',
-                      '&:hover': {
-                        color: 'primary.main',
-                        backgroundColor: colors.green[50],
-                      },
-                    }}
-                  >
-                    {link.name}
-                  </Button>
-                ))}
-              </Box>
-            </Box>
-
-            {/* Search and mobile menu */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              {/* Search button */}
-              <IconButton
-                onClick={toggleSearch}
-                sx={{
-                  color: 'text.secondary',
-                  '&:hover': {
-                    color: 'primary.main',
-                    backgroundColor: colors.green[50],
-                  },
-                }}
-              >
-                <SearchIcon />
-              </IconButton>
-
-              {/* Donate button - desktop */}
-              <Button
-                variant="contained"
-                size="small"
-                sx={{ display: { xs: 'none', sm: 'inline-flex' }, ml: 1 }}
-              >
-                Donate
-              </Button>
-
-              {/* Mobile menu button */}
-              {isMobile && (
-                <IconButton
-                  onClick={toggleMobileMenu}
-                  sx={{
-                    color: 'text.secondary',
-                    '&:hover': {
-                      color: 'primary.main',
-                      backgroundColor: colors.green[50],
-                    },
-                  }}
-                >
-                  {isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
-                </IconButton>
-              )}
-            </Box>
-          </Toolbar>
-
-          {/* Search bar */}
-          <Collapse in={isSearchOpen}>
-            <Box sx={{ py: 2, borderTop: `1px solid ${colors.beige[200]}` }}>
-              <Box sx={{ maxWidth: 400, mx: 'auto' }}>
-                <TextField
-                  fullWidth
-                  placeholder="Search events, pages, and more..."
-                  variant="outlined"
-                  size="small"
-                  autoFocus={isSearchOpen}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-            </Box>
-          </Collapse>
-        </Container>
-      </AppBar>
-
-      {/* Mobile menu drawer */}
-      <Drawer
-        anchor="right"
-        open={isMobileMenuOpen}
-        onClose={toggleMobileMenu}
-        sx={{
-          '& .MuiDrawer-paper': {
-            width: '100%',
-            maxWidth: 400,
-          },
-        }}
-      >
-        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-          {/* Mobile header */}
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              p: 2,
-              borderBottom: `1px solid ${colors.beige[200]}`,
-            }}
-          >
-            <Typography variant="h6" sx={{ fontWeight: 700 }}>
-              Navigation
-            </Typography>
-            <IconButton
-              onClick={toggleMobileMenu}
-              sx={{
-                color: 'text.secondary',
-                '&:hover': {
-                  color: 'primary.main',
-                  backgroundColor: colors.green[50],
-                },
-              }}
+          {/* Search and mobile menu */}
+          <div className="flex items-center space-x-4">
+            {/* Search button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleSearch}
+              className="text-ink-600 hover:text-foreground hover:bg-green-50"
             >
-              <CloseIcon />
-            </IconButton>
-          </Box>
+              <Search className="w-5 h-5" />
+              <span className="sr-only">Search</span>
+            </Button>
 
-          {/* Mobile navigation links */}
-          <Box sx={{ flex: 1, p: 2 }}>
-            <List>
-              {navLinks.map((link) => (
-                <ListItem
-                  key={link.name}
-                  component="a"
-                  href={link.href}
-                  onClick={toggleMobileMenu}
-                  sx={{
-                    py: 1.5,
-                    '&:hover': {
-                      backgroundColor: colors.green[50],
-                      borderRadius: 1,
-                    },
-                  }}
-                >
-                  <ListItemText
-                    primary={link.name}
-                    primaryTypographyProps={{
-                      fontSize: '1.25rem',
-                      fontWeight: 500,
-                    }}
-                  />
-                </ListItem>
-              ))}
-            </List>
+            {/* Donate button - desktop */}
+            <Button variant="primary" size="sm" className="hidden sm:inline-flex">
+              Donate
+            </Button>
 
-            {/* Mobile donate button */}
-            <Box sx={{ mt: 3 }}>
-              <Button variant="contained" fullWidth size="large">
-                Donate to ICWN
+            {/* Mobile menu button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMobileMenu}
+              className="lg:hidden text-ink-600 hover:text-foreground hover:bg-green-50"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Search bar */}
+        {isSearchOpen && (
+          <div className="py-4 border-t border-beige-200">
+            <div className="max-w-md mx-auto">
+              <Input
+                type="search"
+                placeholder="Search events, pages, and more..."
+                className="w-full"
+                autoFocus
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Mobile menu overlay */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 bg-background">
+          <div className="flex flex-col h-full">
+            {/* Mobile header */}
+            <div className="flex items-center justify-between p-4 border-b border-beige-200">
+              <div className="font-heading font-bold text-foreground text-lg">
+                Navigation
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleMobileMenu}
+                className="text-ink-600 hover:text-foreground hover:bg-green-50"
+              >
+                <X className="w-6 h-6" />
               </Button>
-            </Box>
-          </Box>
+            </div>
 
-          {/* Mobile contact info */}
-          <Box
-            sx={{
-              p: 2,
-              backgroundColor: colors.green[50],
-              borderTop: `1px solid ${colors.beige[200]}`,
-            }}
-          >
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <LocationOnIcon sx={{ fontSize: 20, color: colors.green[500] }} />
-                <Typography variant="body2" color="text.secondary">
-                  123 Community Ave, Niagara Falls, ON
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <PhoneIcon sx={{ fontSize: 20, color: colors.green[500] }} />
-                <Typography variant="body2" color="text.secondary">
-                  (905) 123-4567
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <AccessTimeIcon sx={{ fontSize: 20, color: colors.green[500] }} />
-                <Typography variant="body2" color="text.secondary">
-                  Next Prayer: Asr • 3:45 PM
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-      </Drawer>
-    </Box>
+            {/* Mobile navigation links */}
+            <div className="flex-1 px-4 py-6 space-y-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="block text-xl font-body font-medium text-ink-900 hover:text-primary transition-all duration-250 ease-smooth py-2"
+                  onClick={toggleMobileMenu}
+                >
+                  {link.name}
+                </a>
+              ))}
+              
+              {/* Mobile donate button */}
+              <div className="pt-6">
+                <Button variant="primary" className="w-full">
+                  Donate to ICWN
+                </Button>
+              </div>
+            </div>
+
+            {/* Mobile contact info */}
+            <div className="p-4 bg-green-50 border-t border-beige-200">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 text-ink-600">
+                  <MapPin className="w-5 h-5 text-green-500" />
+                  <span>123 Community Ave, Niagara Falls, ON</span>
+                </div>
+                <div className="flex items-center space-x-3 text-ink-600">
+                  <Phone className="w-5 h-5 text-green-500" />
+                  <span>(905) 123-4567</span>
+                </div>
+                <div className="flex items-center space-x-3 text-ink-600">
+                  <Clock className="w-5 h-5 text-green-500" />
+                  <span>Next Prayer: Asr • 3:45 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

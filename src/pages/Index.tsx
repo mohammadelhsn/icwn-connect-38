@@ -1,4 +1,3 @@
-import { Box } from '@mui/material';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import PrayerTimesSection from '@/components/PrayerTimesSection';
@@ -7,15 +6,15 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <Box sx={{ minHeight: '100vh' }}>
+    <div className="min-h-screen">
       <Navigation />
-      <Box component="main">
+      <main>
         <HeroSection />
         <PrayerTimesSection />
         <EventsSection />
-      </Box>
+      </main>
       <Footer />
-    </Box>
+    </div>
   );
 };
 

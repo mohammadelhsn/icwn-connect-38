@@ -1,412 +1,210 @@
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  Grid,
-  TextField,
-  IconButton,
-  Link,
-  useTheme,
-} from '@mui/material';
-import {
-  LocationOn as LocationOnIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-  AccessTime as AccessTimeIcon,
-  Facebook as FacebookIcon,
-  Twitter as TwitterIcon,
-  Instagram as InstagramIcon,
-  YouTube as YouTubeIcon,
-} from '@mui/icons-material';
-import { colors } from '@/theme/theme';
+import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const Footer = () => {
-  const theme = useTheme();
-
   const quickLinks = [
     { name: 'Prayer Times', href: '#prayer-times' },
     { name: 'Events Calendar', href: '#events' },
     { name: 'Donate', href: '#donate' },
     { name: 'About Us', href: '#about' },
     { name: 'Our Space', href: '#space' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   const programs = [
     { name: 'Islamic Education', href: '#education' },
     { name: 'Youth Programs', href: '#youth' },
-    { name: "Women's Circle", href: '#women' },
+    { name: 'Women\'s Circle', href: '#women' },
     { name: 'Community Outreach', href: '#outreach' },
     { name: 'Marriage Services', href: '#marriage' },
-    { name: 'Funeral Services', href: '#funeral' },
+    { name: 'Funeral Services', href: '#funeral' }
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: FacebookIcon, href: '#' },
-    { name: 'Twitter', icon: TwitterIcon, href: '#' },
-    { name: 'Instagram', icon: InstagramIcon, href: '#' },
-    { name: 'YouTube', icon: YouTubeIcon, href: '#' },
+    { name: 'Facebook', icon: Facebook, href: '#' },
+    { name: 'Twitter', icon: Twitter, href: '#' },
+    { name: 'Instagram', icon: Instagram, href: '#' },
+    { name: 'YouTube', icon: Youtube, href: '#' }
   ];
 
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: colors.green[900],
-        color: '#ffffff',
-      }}
-    >
+    <footer className="bg-green-900 text-white">
       {/* Main Footer Content */}
-      <Container maxWidth="xl" sx={{ py: 8 }}>
-        <Grid container spacing={4}>
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
           {/* Organization Info */}
-          <Grid item xs={12} lg={3}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
-              <Box
-                sx={{
-                  width: 48,
-                  height: 48,
-                  backgroundColor: '#ffffff',
-                  borderRadius: 1.5,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Typography
-                  variant="h5"
-                  sx={{
-                    color: colors.green[900],
-                    fontWeight: 700,
-                  }}
-                >
+          <div className="lg:col-span-1">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-green-900 font-heading font-bold text-xl">
                   ICWN
-                </Typography>
-              </Box>
-              <Box>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 700,
-                    color: '#ffffff',
-                    lineHeight: 1.2,
-                  }}
-                >
+                </span>
+              </div>
+              <div>
+                <div className="font-heading font-bold text-white text-lg">
                   Islamic Centre
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: colors.green[100],
-                    mt: -0.5,
-                  }}
-                >
-                  of West Niagara
-                </Typography>
-              </Box>
-            </Box>
-
-            <Typography
-              variant="body2"
-              sx={{
-                color: colors.green[100],
-                lineHeight: 1.6,
-                mb: 3,
-              }}
-            >
-              A welcoming community center serving Muslims in the West Niagara region.
+                </div>
+                <div className="text-green-100 text-sm -mt-1">of West Niagara</div>
+              </div>
+            </div>
+            
+            <p className="text-green-100 font-body text-sm leading-relaxed mb-6">
+              A welcoming community center serving Muslims in the West Niagara region. 
               Join us for worship, learning, and building lasting connections.
-            </Typography>
+            </p>
 
             {/* Social Media Links */}
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <div className="flex space-x-4">
               {socialLinks.map((social) => (
-                <IconButton
+                <a
                   key={social.name}
                   href={social.href}
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    backgroundColor: colors.green[800],
-                    color: '#ffffff',
-                    '&:hover': {
-                      backgroundColor: colors.green[700],
-                    },
-                  }}
+                  className="w-10 h-10 bg-green-800 hover:bg-green-700 rounded-lg flex items-center justify-center transition-colors duration-200"
                   aria-label={social.name}
                 >
-                  <social.icon sx={{ fontSize: 20 }} />
-                </IconButton>
+                  <social.icon className="w-5 h-5" />
+                </a>
               ))}
-            </Box>
-          </Grid>
+            </div>
+          </div>
 
           {/* Quick Links */}
-          <Grid item xs={12} sm={6} lg={2}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 600,
-                color: '#ffffff',
-                mb: 3,
-              }}
-            >
+          <div>
+            <h3 className="font-heading font-semibold text-white text-lg mb-6">
               Quick Links
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            </h3>
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  sx={{
-                    color: colors.green[100],
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#ffffff',
-                    },
-                  }}
-                >
-                  {link.name}
-                </Link>
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                </li>
               ))}
-            </Box>
-          </Grid>
+            </ul>
+          </div>
 
           {/* Programs & Services */}
-          <Grid item xs={12} sm={6} lg={3}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 600,
-                color: '#ffffff',
-                mb: 3,
-              }}
-            >
+          <div>
+            <h3 className="font-heading font-semibold text-white text-lg mb-6">
               Programs & Services
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+            </h3>
+            <ul className="space-y-3">
               {programs.map((program) => (
-                <Link
-                  key={program.name}
-                  href={program.href}
-                  sx={{
-                    color: colors.green[100],
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#ffffff',
-                    },
-                  }}
-                >
-                  {program.name}
-                </Link>
+                <li key={program.name}>
+                  <a
+                    href={program.href}
+                    className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
+                  >
+                    {program.name}
+                  </a>
+                </li>
               ))}
-            </Box>
-          </Grid>
+            </ul>
+          </div>
 
           {/* Contact & Newsletter */}
-          <Grid item xs={12} lg={4}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 600,
-                color: '#ffffff',
-                mb: 3,
-              }}
-            >
+          <div>
+            <h3 className="font-heading font-semibold text-white text-lg mb-6">
               Contact & Updates
-            </Typography>
-
+            </h3>
+            
             {/* Contact Info */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 4 }}>
-              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
-                <LocationOnIcon
-                  sx={{ fontSize: 20, color: colors.green[300], mt: 0.25 }}
-                />
-                <Box>
-                  <Typography variant="body2" sx={{ color: colors.green[100] }}>
-                    123 Community Avenue
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: colors.green[100] }}>
-                    Niagara Falls, ON L2H 3V4
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <PhoneIcon sx={{ fontSize: 20, color: colors.green[300] }} />
-                <Link
+            <div className="space-y-4 mb-6">
+              <div className="flex items-start space-x-3">
+                <MapPin className="w-5 h-5 text-green-300 mt-0.5 flex-shrink-0" />
+                <div className="text-green-100 font-body text-sm">
+                  <div>123 Community Avenue</div>
+                  <div>Niagara Falls, ON L2H 3V4</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Phone className="w-5 h-5 text-green-300 flex-shrink-0" />
+                <a
                   href="tel:+19051234567"
-                  sx={{
-                    color: colors.green[100],
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#ffffff',
-                    },
-                  }}
+                  className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
                 >
                   (905) 123-4567
-                </Link>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <EmailIcon sx={{ fontSize: 20, color: colors.green[300] }} />
-                <Link
+                </a>
+              </div>
+              
+              <div className="flex items-center space-x-3">
+                <Mail className="w-5 h-5 text-green-300 flex-shrink-0" />
+                <a
                   href="mailto:info@icwn.ca"
-                  sx={{
-                    color: colors.green[100],
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#ffffff',
-                    },
-                  }}
+                  className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
                 >
                   info@icwn.ca
-                </Link>
-              </Box>
-
-              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
-                <AccessTimeIcon
-                  sx={{ fontSize: 20, color: colors.green[300], mt: 0.25 }}
-                />
-                <Box>
-                  <Typography variant="body2" sx={{ color: colors.green[100] }}>
-                    Open daily for prayer
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: colors.green[100] }}>
-                    Office: Mon-Fri 9AM-5PM
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
+                </a>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <Clock className="w-5 h-5 text-green-300 mt-0.5 flex-shrink-0" />
+                <div className="text-green-100 font-body text-sm">
+                  <div>Open daily for prayer</div>
+                  <div>Office: Mon-Fri 9AM-5PM</div>
+                </div>
+              </div>
+            </div>
 
             {/* Newsletter Signup */}
-            <Box>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 500,
-                  color: '#ffffff',
-                  mb: 1.5,
-                  fontSize: '1rem',
-                }}
-              >
+            <div>
+              <h4 className="font-heading font-medium text-white text-base mb-3">
                 Stay Updated
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: colors.green[100],
-                  mb: 2,
-                }}
-              >
+              </h4>
+              <p className="text-green-100 font-body text-sm mb-4">
                 Get weekly updates about events and community news.
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                <TextField
+              </p>
+              <div className="flex flex-col space-y-3">
+                <Input
                   type="email"
                   placeholder="Your email address"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    sx: {
-                      backgroundColor: colors.green[800],
-                      color: '#ffffff',
-                      '& input::placeholder': {
-                        color: colors.green[300],
-                        opacity: 1,
-                      },
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: colors.green[700],
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: colors.green[500],
-                      },
-                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: colors.green[500],
-                      },
-                    },
-                  }}
+                  className="bg-green-800 border-green-700 text-white placeholder-green-300 focus:border-green-500"
                 />
                 <Button
-                  variant="contained"
-                  size="small"
-                  sx={{
-                    backgroundColor: '#ffffff',
-                    color: colors.green[900],
-                    '&:hover': {
-                      backgroundColor: colors.green[50],
-                    },
-                  }}
+                  variant="secondary"
+                  size="sm"
+                  className="bg-white text-green-900 hover:bg-green-50"
                 >
                   Subscribe
                 </Button>
-              </Box>
-              <Typography
-                variant="caption"
-                sx={{
-                  color: colors.green[200],
-                  mt: 1,
-                  display: 'block',
-                }}
-              >
+              </div>
+              <p className="text-green-200 font-body text-xs mt-2">
                 We respect your privacy. Unsubscribe anytime.
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Bottom Bar */}
-      <Box
-        sx={{
-          borderTop: `1px solid ${colors.green[800]}`,
-        }}
-      >
-        <Container maxWidth="xl" sx={{ py: 3 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 2,
-            }}
-          >
-            <Typography
-              variant="body2"
-              sx={{
-                color: colors.green[200],
-              }}
-            >
+      <div className="border-t border-green-800">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="text-green-200 font-body text-sm">
               © 2024 Islamic Centre of West Niagara. All rights reserved.
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 3 }}>
-              {['Privacy Policy', 'Terms of Use', 'Accessibility'].map((link) => (
-                <Link
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  sx={{
-                    color: colors.green[200],
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#ffffff',
-                    },
-                  }}
-                >
-                  {link}
-                </Link>
-              ))}
-            </Box>
-          </Box>
-        </Container>
-      </Box>
-    </Box>
+            </div>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="#privacy" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
+                Privacy Policy
+              </a>
+              <a href="#terms" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
+                Terms of Use
+              </a>
+              <a href="#accessibility" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
+                Accessibility
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 };
 
