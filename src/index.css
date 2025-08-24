@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ICWN Design System - Islamic Centre of West Niagara
+All colors are HSL format for precise theming.
+*/
+
+@layer base {
+  :root {
+    /* Brand Colors - Greens */
+    --green-900: 161 59% 14%;  /* #0B3D2E - headings/dark surfaces/primary button bg */
+    --green-800: 161 59% 19%;  /* #12483A */
+    --green-700: 161 54% 24%;  /* #1E614B - hovers/strong UI */
+    --green-600: 161 46% 33%;  /* #2F7D5E */
+    --green-500: 161 35% 46%;  /* #4F9C75 - icons/borders */
+    --green-100: 154 33% 91%;  /* #E9F3EE - soft fills */
+    --green-50: 154 33% 96%;   /* #F4F9F6 - very light section bg */
+
+    /* Beiges */
+    --beige-50: 40 50% 97%;    /* #FBF7F0 - alt section bg */
+    --beige-100: 40 42% 92%;   /* #F5EFE6 */
+    --beige-200: 40 33% 86%;   /* #EAE1D2 - dividers/card borders on beige */
+
+    /* Neutrals */
+    --ink-900: 222 47% 11%;    /* #0F172A - neutral text */
+    --ink-600: 214 15% 38%;    /* #475569 - secondary text */
+
+    /* Accents */
+    --gold-500: 48 52% 52%;    /* #C8A641 - tiny icon accents/dividers only */
+    --gold-100: 48 57% 90%;    /* #F6EFD5 - subtle badges */
+
+    /* Semantic Colors */
+    --success: 122 39% 33%;    /* #2E7D32 */
+    --warning: 30 94% 38%;     /* #B45309 */
+    --info: 201 96% 32%;       /* #0369A1 */
+    --error: 354 70% 42%;      /* #B91C1C */
+
+    /* Design System Mapping */
+    --background: 0 0% 100%;   /* White */
+    --foreground: 161 59% 14%; /* Green-900 for headings */
+
+    --card: 0 0% 100%;         /* White content surfaces */
+    --card-foreground: 161 59% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 161 59% 14%;
+
+    --primary: 161 54% 24%;    /* Green-700 - primary buttons */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 154 33% 96%;  /* Green-50 */
+    --secondary-foreground: 161 59% 14%;
+
+    --muted: 154 33% 91%;      /* Green-100 */
+    --muted-foreground: 214 15% 38%;
+
+    --accent: 40 50% 97%;      /* Beige-50 */
+    --accent-foreground: 161 59% 14%;
+
+    --destructive: 354 70% 42%; /* Error */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 33% 86%;      /* Beige-200 */
+    --input: 40 33% 86%;
+    --ring: 161 46% 33%;       /* Green-600 for focus rings */
+
+    --radius: 0.75rem;         /* 12px base radius */
+
+    /* Shadows */
+    --shadow-card: 0 1px 3px 0 rgba(11, 61, 46, 0.1), 0 1px 2px -1px rgba(11, 61, 46, 0.1);
+    --shadow-hover: 0 4px 6px -1px rgba(11, 61, 46, 0.1), 0 2px 4px -2px rgba(11, 61, 46, 0.1);
+
+    /* Transitions */
+    --transition-smooth: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Tabular numbers for consistent time display */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-green-600 ring-offset-2;
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-beige-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-green-300 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-green-500;
+  }
+}
