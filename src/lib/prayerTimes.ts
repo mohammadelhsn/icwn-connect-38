@@ -20,7 +20,7 @@ export const formatSchool = (school: School) => (school === 'Shafi' ? 0 : 1);
 
 /**
  *
- * @param times
+ * @param times Fetched times
  * @returns
  */
 function markNextAndCurrentPrayer(times: PrayerTimes[]): PrayerTimes[] {
@@ -53,9 +53,9 @@ function markNextAndCurrentPrayer(times: PrayerTimes[]): PrayerTimes[] {
 
 /**
  *
- * @param city
- * @param country
- * @param school
+ * @param city The City for prayer time fetch
+ * @param country The Country for the prayer time fetch
+ * @param school The school (Hanafi, Shafi)
  * @returns
  */
 export async function fetchPrayerTimes(
