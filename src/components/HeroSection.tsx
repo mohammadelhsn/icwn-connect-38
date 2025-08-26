@@ -8,21 +8,38 @@ import { formatTime } from '@/lib/prayerTimes';
 import LoadingSpinner from './LoadingSpinner';
 import InfoCardItem from './InfoCardItem';
 import { MASJID_DONATE_LINK } from '@/lib/contants';
+import { useCMS } from '@/hooks/useCMS';
 
 const HeroSection = () => {
   const { nextPrayer, is24Hour } = usePrayerTimes();
+  const { announcements, events, loading } = useCMS();
+
   const [weeklyEvents, setWeeklyEvents] = useState<string[]>([]);
   const [latestAnnouncement, setLatestAnnouncement] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // In a real app, this data would come from a CMS or API
-    setTimeout(() => {
-      setWeeklyEvents(['Friday Khutbah', 'Quran Study Circle', 'Youth Program']);
-      setLatestAnnouncement("Special guest speaker for this Friday's Khutbah. All are welcome.");
-      setIsLoading(false);
-    }, 1200); // Simulate a network request
-  }, []);
+    if (!loading) {
+      // Compute weekly events (next 7 days)
+      const now = new Date();
+      const weekly = events
+        .filter(event => {
+          const eventDate = new Date(event.date);
+          const diffInMs = eventDate.getTime() - now.getTime();
+          const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+          return diffInDays >= 0 && diffInDays <= 7;
+        })
+        .map(event => event.title);
+
+      setWeeklyEvents(weekly);
+
+      // Latest announcement from announcements array (already sorted by date desc)
+      if (announcements.length > 0) {
+        setLatestAnnouncement(announcements[0].title);
+      } else {
+        setLatestAnnouncement('');
+      }
+    }
+  }, [loading, events, announcements]);
 
   if (!nextPrayer) return <LoadingSpinner />;
   return (
@@ -121,13 +138,14 @@ const HeroSection = () => {
                 </div>
               </InfoCardItem>
 
-              <InfoCardItem title="This Week" isLoading={isLoading}>
+              <InfoCardItem title="This Week" isLoading={loading}>
                 <p className="text-ink-600 font-body">
-                  {weeklyEvents.join(' • ')}
+                  {weeklyEvents.length > 0 && weeklyEvents.join(' • ')}
+                  {weeklyEvents.length == 0 && 'There are no events for this week.'}
                 </p>
               </InfoCardItem>
 
-              <InfoCardItem title="Announcements" isLoading={isLoading}>
+              <InfoCardItem title="Announcements" isLoading={loading}>
                 <p className="text-ink-600 font-body">{latestAnnouncement}</p>
               </InfoCardItem>
             </div>

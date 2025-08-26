@@ -1,14 +1,28 @@
+/** ====== REACT & REACT ROUTER ====== */
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, User, ArrowLeft } from 'lucide-react';
-import { type Announcement } from '@/hooks/CMSContext';
-import { PortableText } from '@portabletext/react';
+
+/** ====== CUSTOM COMPONENTS ====== */
 import { Button } from '@/components/ui/button';
+
+/**  ====== COMPONENTS ====== */
+import { PortableText } from '@portabletext/react';
+
+/** ====== ICONS ====== */
+import { Calendar, User, ArrowLeft } from 'lucide-react';
+
+/** ====== PAGES ====== */
 import NotFound from './NotFound';
+
+/** ====== HOOKS ====== */
 import { useCMS } from '@/hooks/useCMS';
 
+/** ====== TYPES ====== */
+import { type Announcement } from '@/hooks/CMSContext';
+import LoadingPage from './LoadingPage';
+
 const AnnouncementDetailPage = () => {
-    const { announcements } = useCMS();
+    const { announcements, loading } = useCMS();
     const { announcementId } = useParams<{ announcementId: string; }>();
     const [announcement, setAnnouncement] = useState<Announcement | null | undefined>(undefined);
     useEffect(() => {
@@ -17,9 +31,8 @@ const AnnouncementDetailPage = () => {
         );
         setAnnouncement(foundAnnouncement || null);
     }, [announcements, announcementId]);
-    if (!announcement) {
-        return <NotFound />;
-    }
+    if (loading) return <LoadingPage />;
+    if (!announcement) return <NotFound />;
     return (
         <div className="bg-gradient-to-br from-green-50 to-beige-50 py-8">
             <div className="container mx-auto px-4 max-w-4xl">
@@ -31,6 +44,7 @@ const AnnouncementDetailPage = () => {
                         </Link>
                     </Button>
                 </div>
+                {announcement.imageUrl && (<img src={announcement.imageUrl} alt={announcement.title} className="w-full h-64 object-cover" />)}
                 <article className="bg-background/90 backdrop-blur-sm rounded-card p-8 md:p-12 shadow-card border border-green-100/50">
                     <header className="mb-8 border-b border-green-100 pb-6">
                         <h1 className="font-heading font-bold text-3xl md:text-4xl text-foreground mb-4">{announcement.title}</h1>

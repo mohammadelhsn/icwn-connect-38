@@ -1,10 +1,18 @@
-import { Calendar, Clock, MapPin, Users, ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useCMS } from '@/hooks/useCMS';
+/** ====== REACT ROUTER ====== */
 import { useParams, Link } from 'react-router-dom';
 
+/** ====== CUSTOM COMPONENTS ====== */
+import { Button } from '@/components/ui/button';
+
+/** ====== ICONS ====== */
+import { Calendar, Clock, MapPin, Users, ArrowLeft } from 'lucide-react';
+
+/** ====== HOOKS ====== */
+import { useCMS } from '@/hooks/useCMS';
+import LoadingPage from './LoadingPage';
+
 const EventDetailsPage = () => {
-    const { events } = useCMS();
+    const { events, loading } = useCMS();
     const { id } = useParams<{ id: string; }>();
 
     const event = events.find((e) => e._id === id);
@@ -39,7 +47,7 @@ const EventDetailsPage = () => {
                 return 'bg-ink-600 text-white';
         }
     };
-
+    if (loading) return <LoadingPage />;
     if (!event) {
         return (
             <section className="py-16 md:py-24 bg-beige-50">
@@ -61,7 +69,7 @@ const EventDetailsPage = () => {
             </section>
         );
     }
-
+    console.log(event.imageUrl);
     const spotsLeft = event.capacity - event.registered;
 
     return (
@@ -79,7 +87,7 @@ const EventDetailsPage = () => {
 
                     <div className="bg-card rounded-card shadow-card border border-beige-200 overflow-hidden">
                         {/* You could add an event image here if your CMS provides one */}
-                        {/* <img src={event.imageUrl || '/placeholder-event.jpg'} alt={event.title} className="w-full h-64 object-cover" /> */}
+                        {event.imageUrl && (<img src={event.imageUrl} alt={event.title} className="w-full h-64 object-cover" />)}
 
                         <div className="p-6 md:p-8">
                             <div className="flex items-start justify-between mb-4">

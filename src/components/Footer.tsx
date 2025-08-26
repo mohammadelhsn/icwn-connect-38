@@ -1,34 +1,42 @@
+/** ====== ICONS ====== */
+//!! FACEBOOK, TWITTER, INSTAGRAM, YOUTUBE ICONS ARE DEPRECATED, FIND A NEW SOURCE
 import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
+
+/** ====== CUSTOM COMPONENTS ====== */
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+/** ====== CONSTANTS ====== */
 import { MASJID_CITY, MASJID_EMAIL, MASJID_FACEBOOK, MASJID_PHONE, MASJID_PHONE_F, MASJID_STREET } from '@/lib/contants';
 
+//? Moved these outside of the component, we don't need to redefine these on every render.
+
+const quickLinks = [
+  { name: 'Prayer Times', href: '#prayer-times' },
+  { name: 'Events Calendar', href: '#events' },
+  { name: 'Donate', href: '#donate' },
+  { name: 'About Us', href: '#about' },
+  { name: 'Our Space', href: '#space' },
+  { name: 'Contact', href: '#contact' }
+];
+
+const programs = [
+  { name: 'Islamic Education', href: '#education' },
+  { name: 'Youth Programs', href: '#youth' },
+  { name: 'Women\'s Circle', href: '#women' },
+  { name: 'Community Outreach', href: '#outreach' },
+  { name: 'Marriage Services', href: '#marriage' },
+  { name: 'Funeral Services', href: '#funeral' }
+];
+
+const socialLinks = [
+  { name: 'Facebook', icon: Facebook, href: MASJID_FACEBOOK },
+  //  { name: 'Twitter', icon: Twitter, href: '#' },
+  //  { name: 'Instagram', icon: Instagram, href: '#' },
+  //  { name: 'YouTube', icon: Youtube, href: '#' }
+];
+
 const Footer = () => {
-  const quickLinks = [
-    { name: 'Prayer Times', href: '#prayer-times' },
-    { name: 'Events Calendar', href: '#events' },
-    { name: 'Donate', href: '#donate' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Our Space', href: '#space' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const programs = [
-    { name: 'Islamic Education', href: '#education' },
-    { name: 'Youth Programs', href: '#youth' },
-    { name: 'Women\'s Circle', href: '#women' },
-    { name: 'Community Outreach', href: '#outreach' },
-    { name: 'Marriage Services', href: '#marriage' },
-    { name: 'Funeral Services', href: '#funeral' }
-  ];
-
-  const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: MASJID_FACEBOOK },
-    //  { name: 'Twitter', icon: Twitter, href: '#' },
-    //  { name: 'Instagram', icon: Instagram, href: '#' },
-    //  { name: 'YouTube', icon: Youtube, href: '#' }
-  ];
-
   return (
     <footer className="bg-green-900 text-white">
       {/* Main Footer Content */}

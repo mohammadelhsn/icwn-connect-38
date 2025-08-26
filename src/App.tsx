@@ -1,19 +1,26 @@
+/** REACT ROUTER */
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+/** CUSTOM COMPONENTS */
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import ComponentTestPage from './pages/Test';
-import { PrayerTimesProvider } from './hooks/PrayerContext';
+import Footer from './components/Footer';
+import Navigation from './components/Navigation';
+
+/** CUSTOM HOOKS */
+import PrayerTimesProvider from './hooks/PrayerContext';
+import { CMSProvider } from './hooks/CMSContext';
+
+/** PAGES */
+import AboutPage from './pages/AboutPage';
 import AnnouncementsPage from './pages/AnnouncementsPage';
 import AnnouncementDetailPage from './pages/AnnouncementDetailPage';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import { CMSProvider } from './hooks/CMSContext';
+import ComponentTestPage from './pages/Test';
 import EventDetailsPage from './pages/EventDetailsPage';
-import AboutPage from './pages/AboutPage';
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 

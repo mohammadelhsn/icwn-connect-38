@@ -3,9 +3,12 @@ import { Button } from '@/components/ui/button';
 import LoadingSpinner from './LoadingSpinner';
 import { usePrayerTimes } from '@/hooks/usePrayerContext';
 import { formatTime } from '@/lib/prayerTimes';
+import LoadingPage from '@/pages/LoadingPage';
 
 const PrayerTimesSection = () => {
-  const { school, setSchool, prayerTimes, nextPrayer, is24Hour, setIs24Hour } = usePrayerTimes();
+  const { school, setSchool, prayerTimes, nextPrayer, is24Hour, setIs24Hour, loading } = usePrayerTimes();
+  if (loading) return <LoadingPage />;
+  // TODO: Replace this with an error page */
   if (!prayerTimes) return <LoadingSpinner />;
   return (
     <section id="prayer-times" className="py-16 md:py-24 bg-background">

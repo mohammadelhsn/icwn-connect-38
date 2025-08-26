@@ -1,10 +1,19 @@
+/** ====== REACT ====== */
 import { useState } from 'react';
-import { Menu, X, Search, MapPin, Phone, Clock } from 'lucide-react';
+
+/** ====== CUSTOM COMPONENTS ====== */
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { usePrayerTimes } from '@/hooks/usePrayerContext';
-import { formatTime } from '@/lib/prayerTimes';
 import LoadingSpinner from './LoadingSpinner';
+
+/** ====== ICONS ====== */
+import { Menu, X, Search, MapPin, Phone, Clock } from 'lucide-react';
+
+/** ====== HOOKS ====== */
+import { usePrayerTimes } from '@/hooks/usePrayerContext';
+
+/** ====== FUNCTIONS & CONSTANTS ====== */
+import { formatTime } from '@/lib/prayerTimes';
 import { MASJID_ADDRESS, MASJID_DONATE_LINK, MASJID_PHONE_F } from '@/lib/contants';
 
 const Navigation = () => {
@@ -15,15 +24,18 @@ const Navigation = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
+  /** The Navlinks for the Navbar. If you want to add one, simply just follow the format */
   const navLinks = [
     { name: 'Home', href: '/#' },
     { name: 'Prayer Times', href: '/#prayer-times' },
     { name: 'Events', href: '/#events' },
     { name: 'Donate', href: MASJID_DONATE_LINK },
     { name: 'About', href: '/#about' },
-    // what is this page
+    //? what is this page
     { name: 'Our Space', href: '/#space' }
   ];
+
+  // TODO: Find a better way to handle this
   if (!nextPrayer) return <LoadingSpinner />;
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-beige-200 shadow-card">

@@ -16,7 +16,7 @@ export const MASJID_PHONE = '9051234567';
 /** The formatted phone number */
 export const MASJID_PHONE_F = `(905) 123-4567`;
 
-/** THe facebook link */
+/** The facebook link */
 export const MASJID_FACEBOOK = `https://www.facebook.com/westniagaraislam`;
 
 /** Zeffy Donate Link */

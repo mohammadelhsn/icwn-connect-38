@@ -2,9 +2,10 @@ import { Calendar, Clock, MapPin, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCMS } from '@/hooks/useCMS';
 import { Link } from 'react-router-dom';
+import LoadingPage from '@/pages/LoadingPage';
 
 const EventsSection = () => {
-  const { events } = useCMS();
+  const { events, loading } = useCMS();
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -32,6 +33,7 @@ const EventsSection = () => {
         return 'bg-ink-600 text-white';
     }
   };
+  if (loading) return <LoadingPage />;
   return (
     <section id="events" className="py-16 md:py-24 bg-beige-50">
       <div className="container mx-auto px-4">

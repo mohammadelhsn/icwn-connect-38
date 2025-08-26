@@ -2,16 +2,27 @@ import axios from 'axios';
 import { format, isAfter, parse } from 'date-fns';
 
 export interface PrayerTimes {
+	/** The name of the prayer, (e.g. Fajr) */
 	name: string;
+	/** The time of the prayer in string format */
 	time: string;
+	/** Whether it is the next prayer */
 	next: boolean;
+	/** Whether it is the current */
 	current: boolean;
 }
 
+/** The school for calculation */
 type School = 'Shafi' | 'Hanafi';
 
+/** Format the school for the API req */
 export const formatSchool = (school: School) => (school === 'Shafi' ? 0 : 1);
 
+/**
+ *
+ * @param times
+ * @returns
+ */
 function markNextAndCurrentPrayer(times: PrayerTimes[]): PrayerTimes[] {
 	const now = new Date();
 	times.forEach((t) => {
@@ -40,6 +51,13 @@ function markNextAndCurrentPrayer(times: PrayerTimes[]): PrayerTimes[] {
 	return times;
 }
 
+/**
+ *
+ * @param city
+ * @param country
+ * @param school
+ * @returns
+ */
 export async function fetchPrayerTimes(
 	city: string,
 	country: string,
@@ -68,6 +86,12 @@ export async function fetchPrayerTimes(
 	return markNextAndCurrentPrayer(times);
 }
 
+/**
+ *
+ * @param is24Hour
+ * @param time24
+ * @returns
+ */
 export const formatTime = (is24Hour: boolean, time24: string) => {
 	if (is24Hour) return time24;
 

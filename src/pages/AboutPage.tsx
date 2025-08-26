@@ -1,5 +1,10 @@
+/** ====== REACT ROUTER ====== */
 import { Link } from 'react-router-dom';
+
+/** ====== CUSTOM COMPONENTS ====== */
 import { Button } from '@/components/ui/button';
+
+/** ====== ICONS ====== */
 import { ArrowLeft } from 'lucide-react';
 
 const AboutPage = () => {

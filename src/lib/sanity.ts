@@ -1,5 +1,8 @@
 import { createClient } from '@sanity/client';
 
+/**
+ * The client for the CMS
+ */
 export const client = createClient({
 	projectId: 's32hxt12',
 	dataset: 'production',
@@ -7,6 +10,7 @@ export const client = createClient({
 	apiVersion: '2025-08-25',
 });
 
+/** The query string for the announcements */
 const announcementsQuery = `*[_type == "announcement"] | order(date desc) {
   _id,
   title,
@@ -17,10 +21,12 @@ const announcementsQuery = `*[_type == "announcement"] | order(date desc) {
   "imageUrl": mainImage.asset->url
 }`;
 
+/** Fetches Announcement data from the CMS */
 export async function getAnnouncements() {
 	return await client.fetch(announcementsQuery);
 }
 
+/** String query */
 const eventsQuery = `*[_type == "event"] | order(date asc, time asc) {
   _id,
   title,
@@ -37,6 +43,7 @@ const eventsQuery = `*[_type == "event"] | order(date asc, time asc) {
   "imageUrl": mainImage.asset->url
 }`;
 
+/** Gets the events from the CMS */
 export async function getEvents() {
 	return await client.fetch(eventsQuery);
 }
