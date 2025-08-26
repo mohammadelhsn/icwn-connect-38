@@ -1,6 +1,7 @@
 import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { MASJID_CITY, MASJID_EMAIL, MASJID_FACEBOOK, MASJID_PHONE, MASJID_PHONE_F, MASJID_STREET } from '@/lib/contants';
 
 const Footer = () => {
   const quickLinks = [
@@ -22,10 +23,10 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#' },
-    { name: 'Twitter', icon: Twitter, href: '#' },
-    { name: 'Instagram', icon: Instagram, href: '#' },
-    { name: 'YouTube', icon: Youtube, href: '#' }
+    { name: 'Facebook', icon: Facebook, href: MASJID_FACEBOOK },
+    //  { name: 'Twitter', icon: Twitter, href: '#' },
+    //  { name: 'Instagram', icon: Instagram, href: '#' },
+    //  { name: 'YouTube', icon: Youtube, href: '#' }
   ];
 
   return (
@@ -33,7 +34,7 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+
           {/* Organization Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
@@ -44,14 +45,14 @@ const Footer = () => {
               </div>
               <div>
                 <div className="font-heading font-bold text-white text-lg">
-                  Islamic Centre
+                  Islamic Community
                 </div>
                 <div className="text-green-100 text-sm -mt-1">of West Niagara</div>
               </div>
             </div>
-            
+
             <p className="text-green-100 font-body text-sm leading-relaxed mb-6">
-              A welcoming community center serving Muslims in the West Niagara region. 
+              A welcoming community center serving Muslims in the West Niagara region.
               Join us for worship, learning, and building lasting connections.
             </p>
 
@@ -113,37 +114,37 @@ const Footer = () => {
             <h3 className="font-heading font-semibold text-white text-lg mb-6">
               Contact & Updates
             </h3>
-            
+
             {/* Contact Info */}
             <div className="space-y-4 mb-6">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-green-300 mt-0.5 flex-shrink-0" />
                 <div className="text-green-100 font-body text-sm">
-                  <div>123 Community Avenue</div>
-                  <div>Niagara Falls, ON L2H 3V4</div>
+                  <div>{MASJID_STREET}</div>
+                  <div>{MASJID_CITY}</div>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-green-300 flex-shrink-0" />
                 <a
-                  href="tel:+19051234567"
+                  href={`tel+${MASJID_PHONE}`}
                   className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
                 >
-                  (905) 123-4567
+                  {MASJID_PHONE_F}
                 </a>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-green-300 flex-shrink-0" />
                 <a
-                  href="mailto:info@icwn.ca"
+                  href={`mailto:${MASJID_EMAIL}`}
                   className="text-green-100 hover:text-white font-body text-sm transition-colors duration-200"
                 >
-                  info@icwn.ca
+                  {MASJID_EMAIL}
                 </a>
               </div>
-              
+
               <div className="flex items-start space-x-3">
                 <Clock className="w-5 h-5 text-green-300 mt-0.5 flex-shrink-0" />
                 <div className="text-green-100 font-body text-sm">
@@ -188,18 +189,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="text-green-200 font-body text-sm">
-              © 2024 Islamic Centre of West Niagara. All rights reserved.
-            </div>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#privacy" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="#terms" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
-                Terms of Use
-              </a>
-              <a href="#accessibility" className="text-green-200 hover:text-white font-body text-sm transition-colors duration-200">
-                Accessibility
-              </a>
+              © 2024 Islamic Community of West Niagara. All rights reserved.
             </div>
           </div>
         </div>

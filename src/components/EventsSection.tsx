@@ -2,6 +2,7 @@ import { Calendar, Clock, MapPin, Users, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const EventsSection = () => {
+  /** //? Need to make this dynamic? */
   const events = [
     {
       id: 1,
@@ -132,9 +133,8 @@ const EventsSection = () => {
             {events.map((event) => (
               <div
                 key={event.id}
-                className={`bg-card rounded-card shadow-card border border-beige-200 overflow-hidden transition-all duration-250 ease-smooth hover:shadow-hover hover:-translate-y-1 ${
-                  event.featured ? 'ring-2 ring-green-200' : ''
-                }`}
+                className={`bg-card rounded-card shadow-card border border-beige-200 overflow-hidden transition-all duration-250 ease-smooth hover:shadow-hover hover:-translate-y-1 ${event.featured ? 'ring-2 ring-green-200' : ''
+                  }`}
               >
                 {/* Event Header */}
                 <div className="p-6 pb-4">
@@ -148,11 +148,11 @@ const EventsSection = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <h3 className="font-heading font-semibold text-lg text-foreground mb-3 leading-tight">
                     {event.title}
                   </h3>
-                  
+
                   <p className="text-ink-600 font-body text-sm leading-relaxed mb-4">
                     {event.description}
                   </p>
@@ -166,19 +166,19 @@ const EventsSection = () => {
                       {formatDate(event.date)}
                     </span>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3 text-sm text-ink-600">
                     <Clock className="w-4 h-4 text-green-500" />
                     <span className="font-body tabular-nums">
                       {formatTime(event.time)} – {formatTime(event.endTime)}
                     </span>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3 text-sm text-ink-600">
                     <MapPin className="w-4 h-4 text-green-500" />
                     <span className="font-body">{event.location}</span>
                   </div>
-                  
+
                   <div className="flex items-center space-x-3 text-sm text-ink-600">
                     <Users className="w-4 h-4 text-green-500" />
                     <span className="font-body">

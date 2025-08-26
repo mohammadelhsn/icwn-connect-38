@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { Menu, X, Search, MapPin, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { usePrayerTimes } from '@/hooks/usePrayerContext';
+import { formatTime } from '@/lib/prayerTimes';
+import LoadingSpinner from './LoadingSpinner';
+import { MASJID_ADDRESS, MASJID_DONATE_LINK, MASJID_PHONE_F } from '@/lib/contants';
 
 const Navigation = () => {
+  const { nextPrayer, is24Hour } = usePrayerTimes();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -11,14 +16,15 @@ const Navigation = () => {
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Prayer Times', href: '#prayer-times' },
-    { name: 'Events', href: '#events' },
-    { name: 'Donate', href: '#donate' },
-    { name: 'About', href: '#about' },
-    { name: 'Our Space', href: '#space' }
+    { name: 'Home', href: '/#' },
+    { name: 'Prayer Times', href: '/#prayer-times' },
+    { name: 'Events', href: '/#events' },
+    { name: 'Donate', href: MASJID_DONATE_LINK },
+    { name: 'About', href: '/#about' },
+    // what is this page
+    { name: 'Our Space', href: '/#space' }
   ];
-
+  if (!nextPrayer) return <LoadingSpinner />;
   return (
     <nav className="sticky top-0 z-50 bg-background border-b border-beige-200 shadow-card">
       {/* Top bar with contact info */}
@@ -28,16 +34,16 @@ const Navigation = () => {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-green-500" />
-                <span>123 Community Ave, Niagara Falls, ON</span>
+                <span>{MASJID_ADDRESS}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-green-500" />
-                <span>(905) 123-4567</span>
+                <span>{MASJID_PHONE_F}</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Clock className="w-4 h-4 text-green-500" />
-              <span>Next Prayer: Asr • 3:45 PM</span>
+              <span>Next Prayer: {nextPrayer.name} • {formatTime(is24Hour, nextPrayer.time)}</span>
             </div>
           </div>
         </div>
@@ -48,7 +54,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#" className="flex items-center space-x-3">
+            <a href="/" className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
                 <span className="text-primary-foreground font-heading font-bold text-lg">
                   ICWN
@@ -56,7 +62,7 @@ const Navigation = () => {
               </div>
               <div className="hidden sm:block">
                 <div className="font-heading font-bold text-foreground text-lg">
-                  Islamic Centre
+                  Islamic Community
                 </div>
                 <div className="text-ink-600 text-sm -mt-1">of West Niagara</div>
               </div>
@@ -90,9 +96,11 @@ const Navigation = () => {
             </Button>
 
             {/* Donate button - desktop */}
-            <Button variant="primary" size="sm" className="hidden sm:inline-flex">
-              Donate
-            </Button>
+            <a href={MASJID_DONATE_LINK}>
+              <Button variant="primary" size="sm" className="hidden sm:inline-flex">
+                Donate
+              </Button>
+            </a>
 
             {/* Mobile menu button */}
             <Button
@@ -157,12 +165,14 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
-              
+
               {/* Mobile donate button */}
               <div className="pt-6">
-                <Button variant="primary" className="w-full">
-                  Donate to ICWN
-                </Button>
+                <a href={MASJID_DONATE_LINK}>
+                  <Button variant="primary" className="w-full">
+                    Donate to ICWN
+                  </Button>
+                </a>
               </div>
             </div>
 
@@ -171,15 +181,15 @@ const Navigation = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-ink-600">
                   <MapPin className="w-5 h-5 text-green-500" />
-                  <span>123 Community Ave, Niagara Falls, ON</span>
+                  <span>{MASJID_ADDRESS}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-ink-600">
                   <Phone className="w-5 h-5 text-green-500" />
-                  <span>(905) 123-4567</span>
+                  <span>{MASJID_PHONE_F}</span>
                 </div>
                 <div className="flex items-center space-x-3 text-ink-600">
                   <Clock className="w-5 h-5 text-green-500" />
-                  <span>Next Prayer: Asr • 3:45 PM</span>
+                  <span>Next Prayer: {nextPrayer.name} • {formatTime(is24Hour, nextPrayer.time)}</span>
                 </div>
               </div>
             </div>
