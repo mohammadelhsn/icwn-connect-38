@@ -21,7 +21,7 @@ const AnnouncementDetailPage = () => {
         return <NotFound />;
     }
     return (
-        <div className="bg-gradient-to-br from-green-50 to-beige-50 py-32">
+        <div className="bg-gradient-to-br from-green-50 to-beige-50 py-8">
             <div className="container mx-auto px-4 max-w-4xl">
                 <div className="mb-8">
                     <Button asChild variant="ghost" className="text-ink-600 hover:text-green-700">

@@ -11,7 +11,7 @@ const AnnouncementsPage = () => {
     const [isLoading, setLoading] = useState(false);
     if (announcements.length == 0) return <LoadingSpinner />;
     return (
-        <div className="bg-gradient-to-br from-green-50 to-beige-50 min-h-screen py-32">
+        <div className="bg-gradient-to-br from-green-50 to-beige-50 min-h-screen py-8">
             <div className="container mx-auto px-4">
                 <div className="mb-8">
                     <Button asChild variant="ghost" className="text-ink-600 hover:text-green-700">

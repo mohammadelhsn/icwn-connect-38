@@ -12,7 +12,7 @@ import AnnouncementDetailPage from './pages/AnnouncementDetailPage';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import { CMSProvider } from './hooks/CMSContext';
-import EventDetailsPage from './components/EventDetailsPage';
+import EventDetailsPage from './pages/EventDetailsPage';
 import AboutPage from './pages/AboutPage';
 
 const queryClient = new QueryClient();
