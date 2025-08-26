@@ -80,5 +80,13 @@ export default defineType({
       type: 'url',
       description: 'Optional link for external registration if needed',
     }),
+    defineField({
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 })

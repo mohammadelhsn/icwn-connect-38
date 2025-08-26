@@ -1,41 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, User, ArrowLeft } from 'lucide-react';
-import { Announcement } from '@/components/AnnouncementCard';
-import { mockAnnouncements } from '@/lib/announcements';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import { type Announcement } from '@/hooks/CMSContext';
+import { PortableText } from '@portabletext/react';
 import { Button } from '@/components/ui/button';
 import NotFound from './NotFound';
+import { useCMS } from '@/hooks/useCMS';
 
 const AnnouncementDetailPage = () => {
+    const { announcements } = useCMS();
     const { announcementId } = useParams<{ announcementId: string; }>();
     const [announcement, setAnnouncement] = useState<Announcement | null | undefined>(undefined);
-    const [isLoading, setIsLoading] = useState(true);
-
     useEffect(() => {
-        // In a real app, you would fetch the specific announcement from your API
-        // e.g., fetch(`/api/announcements/${announcementId}`)
-        setTimeout(() => {
-            const foundAnnouncement = mockAnnouncements.find(
-                (a) => a.id.toString() === announcementId
-            );
-            setAnnouncement(foundAnnouncement || null);
-            setIsLoading(false);
-        }, 300); // Simulate network delay
-    }, [announcementId]);
-
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center min-h-screen">
-                <LoadingSpinner className="w-12 h-12" />
-            </div>
+        const foundAnnouncement = announcements.find(
+            (a) => a._id === announcementId
         );
-    }
-
+        setAnnouncement(foundAnnouncement || null);
+    }, [announcements, announcementId]);
     if (!announcement) {
         return <NotFound />;
     }
-
     return (
         <div className="bg-gradient-to-br from-green-50 to-beige-50 py-32">
             <div className="container mx-auto px-4 max-w-4xl">
@@ -55,7 +39,9 @@ const AnnouncementDetailPage = () => {
                             <div className="flex items-center"><User className="w-5 h-5 mr-2" /><span>by {announcement.author}</span></div>
                         </div>
                     </header>
-                    <div className="prose prose-lg max-w-none font-body text-ink-700 leading-relaxed" dangerouslySetInnerHTML={{ __html: announcement.content }} />
+                    <div className="prose prose-lg max-w-none font-body text-ink-700 leading-relaxed">
+                        <PortableText value={announcement.content} />
+                    </div>
                 </article>
             </div>
         </div>

@@ -39,5 +39,13 @@ export default defineType({
       of: [{type: 'block'}],
       description: 'Full announcement content. Supports rich text formatting.',
     }),
+    defineField({
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 })
