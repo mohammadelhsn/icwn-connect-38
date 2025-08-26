@@ -69,7 +69,6 @@ const EventDetailsPage = () => {
             </section>
         );
     }
-    console.log(event.imageUrl);
     const spotsLeft = event.capacity - event.registered;
 
     return (
