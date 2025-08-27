@@ -3,36 +3,10 @@ import { Button } from '@/components/ui/button';
 import { useCMS } from '@/hooks/useCMS';
 import { Link } from 'react-router-dom';
 import LoadingPage from '@/pages/LoadingPage';
+import { formatDate, getCategoryColor, formatTime } from '@/lib/functions';
 
 const EventsSection = () => {
   const { events, loading } = useCMS();
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    });
-  };
-  const formatTime = (time: string) => {
-    const [hours, minutes] = time.split(':');
-    const hour = parseInt(hours);
-    const ampm = hour >= 12 ? 'PM' : 'AM';
-    const displayHour = hour % 12 || 12;
-    return `${displayHour}:${minutes} ${ampm}`;
-  };
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'Prayer':
-        return 'bg-green-700 text-white';
-      case 'Education':
-        return 'bg-info text-white';
-      case 'Community':
-        return 'bg-gold-500 text-white';
-      default:
-        return 'bg-ink-600 text-white';
-    }
-  };
   if (loading) return <LoadingPage />;
   return (
     <section id="events" className="py-16 md:py-24 bg-beige-50">

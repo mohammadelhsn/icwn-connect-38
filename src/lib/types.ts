@@ -84,3 +84,31 @@ export interface PrayerTimes {
 
 /** The school for calculation */
 export type School = 'Shafi' | 'Hanafi';
+
+export interface PrayerContextValue {
+	/** The prayer times for the day */
+	prayerTimes: PrayerTimes[] | null;
+	/** The next prayer (for highlighting) */
+	nextPrayer: PrayerTimes | null;
+	/** The current prayer, (for highlighting) */
+	currentPrayer: PrayerTimes | null;
+	/** The current school */
+	school: School;
+	/** Set the school for the prayer time calculation */
+	setSchool: (school: School) => void;
+	/** What the current time mode is */
+	is24Hour: boolean;
+	/** Sets which time mode it displays */
+	setIs24Hour: (value: boolean) => void;
+	/** Whether the API data is still loading */
+	loading: boolean;
+}
+
+export interface CMSContextValue {
+	/** The announcements data */
+	announcements: Announcement[];
+	/** The events data */
+	events: Event[];
+	/** Whether the content from CMS is loading */
+	loading: boolean;
+}

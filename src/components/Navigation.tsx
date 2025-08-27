@@ -14,7 +14,7 @@ import { usePrayerTimes } from '@/hooks/usePrayerContext';
 
 /** ====== FUNCTIONS & CONSTANTS ====== */
 import { formatTime } from '@/lib/prayerTimes';
-import { MASJID_ADDRESS, MASJID_DONATE_LINK, MASJID_PHONE_F } from '@/lib/contants';
+import { MASJID_ADDRESS, MASJID_DONATE_LINK, MASJID_PHONE_F } from '@/lib/constants';
 
 /** The Navlinks for the Navbar. If you want to add one, simply just follow the format */
 const navLinks = [

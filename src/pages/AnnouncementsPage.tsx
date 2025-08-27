@@ -1,11 +1,10 @@
 /** ====== REACT & REACT ROUTER ====== */
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 /** ====== CUSTOM COMPONENTS ====== */
 import AnnouncementCard from '@/components/AnnouncementCard';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import { Button } from '@/components/ui/button';
+import LoadingSpinner from '@/components/LoadingSpinner';
 
 /** ====== ICONS ====== */
 import { ArrowLeft } from 'lucide-react';
@@ -17,7 +16,7 @@ import LoadingPage from './LoadingPage';
 const AnnouncementsPage = () => {
     const { announcements, loading } = useCMS();
     if (loading) return <LoadingPage />;
-    if (announcements.length == 0) return <LoadingSpinner />;
+    if (announcements.length == 0) return <LoadingPage />;
     return (
         <div className="bg-gradient-to-br from-green-50 to-beige-50 min-h-screen py-8">
             <div className="container mx-auto px-4">

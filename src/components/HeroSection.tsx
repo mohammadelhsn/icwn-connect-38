@@ -7,16 +7,14 @@ import { usePrayerTimes } from '@/hooks/usePrayerContext';
 import { formatTime } from '@/lib/prayerTimes';
 import LoadingSpinner from './LoadingSpinner';
 import InfoCardItem from './InfoCardItem';
-import { MASJID_DONATE_LINK } from '@/lib/contants';
+import { MASJID_DONATE_LINK } from '@/lib/constants';
 import { useCMS } from '@/hooks/useCMS';
 
 const HeroSection = () => {
   const { nextPrayer, is24Hour } = usePrayerTimes();
   const { announcements, events, loading } = useCMS();
-
   const [weeklyEvents, setWeeklyEvents] = useState<string[]>([]);
   const [latestAnnouncement, setLatestAnnouncement] = useState<string>('');
-
   useEffect(() => {
     if (!loading) {
       // Compute weekly events (next 7 days)
@@ -40,7 +38,6 @@ const HeroSection = () => {
       }
     }
   }, [loading, events, announcements]);
-
   if (!nextPrayer) return <LoadingSpinner />;
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-green-50 to-beige-50 overflow-hidden">

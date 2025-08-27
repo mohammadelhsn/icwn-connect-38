@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
 /** ====== CONSTANTS ====== */
-import { MASJID_CITY, MASJID_EMAIL, MASJID_FACEBOOK, MASJID_PHONE, MASJID_PHONE_F, MASJID_STREET } from '@/lib/contants';
+import { MASJID_CITY, MASJID_EMAIL, MASJID_FACEBOOK, MASJID_PHONE, MASJID_PHONE_F, MASJID_STREET } from '@/lib/constants';
 
 //? Moved these outside of the component, we don't need to redefine these on every render.
 
