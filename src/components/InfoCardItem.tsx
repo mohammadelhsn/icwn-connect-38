@@ -1,11 +1,6 @@
+import { InfoCardItemProps } from '@/lib/types';
 import LoadingSpinner from './LoadingSpinner';
 
-interface InfoCardItemProps {
-    title: string;
-    isLoading: boolean;
-    children: React.ReactNode;
-    className?: string;
-}
 
 const InfoCardItem = ({ title, isLoading, children, className }: InfoCardItemProps) => {
     return (

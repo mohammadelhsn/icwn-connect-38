@@ -1,5 +1,5 @@
+import { Announcement, Event } from '@/lib/types';
 import { createContext, useContext } from 'react';
-import { Announcement, Event } from './CMSContext';
 
 interface CMSContextValue {
     /** The announcements data */

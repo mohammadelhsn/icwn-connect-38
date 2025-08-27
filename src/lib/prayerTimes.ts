@@ -1,19 +1,6 @@
 import axios from 'axios';
 import { format, isAfter, parse } from 'date-fns';
-
-export interface PrayerTimes {
-	/** The name of the prayer, (e.g. Fajr) */
-	name: string;
-	/** The time of the prayer in string format */
-	time: string;
-	/** Whether it is the next prayer */
-	next: boolean;
-	/** Whether it is the current */
-	current: boolean;
-}
-
-/** The school for calculation */
-type School = 'Shafi' | 'Hanafi';
+import { PrayerTimes, School } from './types';
 
 /** Format the school for the API req */
 export const formatSchool = (school: School) => (school === 'Shafi' ? 0 : 1);

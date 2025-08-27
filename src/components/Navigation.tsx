@@ -16,6 +16,17 @@ import { usePrayerTimes } from '@/hooks/usePrayerContext';
 import { formatTime } from '@/lib/prayerTimes';
 import { MASJID_ADDRESS, MASJID_DONATE_LINK, MASJID_PHONE_F } from '@/lib/contants';
 
+/** The Navlinks for the Navbar. If you want to add one, simply just follow the format */
+const navLinks = [
+  { name: 'Home', href: '/#' },
+  { name: 'Prayer Times', href: '/#prayer-times' },
+  { name: 'Events', href: '/#events' },
+  { name: 'Donate', href: MASJID_DONATE_LINK },
+  { name: 'About', href: '/#about' },
+  //? what is this page
+  { name: 'Our Space', href: '/#space' }
+];
+
 const Navigation = () => {
   const { nextPrayer, is24Hour } = usePrayerTimes();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,17 +34,6 @@ const Navigation = () => {
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-
-  /** The Navlinks for the Navbar. If you want to add one, simply just follow the format */
-  const navLinks = [
-    { name: 'Home', href: '/#' },
-    { name: 'Prayer Times', href: '/#prayer-times' },
-    { name: 'Events', href: '/#events' },
-    { name: 'Donate', href: MASJID_DONATE_LINK },
-    { name: 'About', href: '/#about' },
-    //? what is this page
-    { name: 'Our Space', href: '/#space' }
-  ];
 
   // TODO: Find a better way to handle this
   if (!nextPrayer) return <LoadingSpinner />;

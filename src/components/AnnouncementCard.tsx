@@ -1,9 +1,6 @@
 import { Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import type { Announcement } from '@/hooks/CMSContext';
-interface AnnouncementCardProps {
-    announcement: Announcement;
-}
+import { AnnouncementCardProps } from '@/lib/types';
 
 const AnnouncementCard = ({ announcement }: AnnouncementCardProps) => {
     return (

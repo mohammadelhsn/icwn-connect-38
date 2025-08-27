@@ -2,8 +2,9 @@
 import { useEffect, useState, type FC, type ReactNode } from 'react';
 
 /** ====== FUNCTIONS & TYPES ====== */
-import { fetchPrayerTimes, PrayerTimes } from '@/lib/prayerTimes';
+import { fetchPrayerTimes } from '@/lib/prayerTimes';
 import { type School, PrayerTimesContext } from './usePrayerContext';
+import { PrayerTimes } from '@/lib/types';
 
 const PrayerTimesProvider: FC<{ children: ReactNode; }> = ({ children }) => {
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimes[] | null>(null);

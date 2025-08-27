@@ -18,8 +18,8 @@ import NotFound from './NotFound';
 import { useCMS } from '@/hooks/useCMS';
 
 /** ====== TYPES ====== */
-import { type Announcement } from '@/hooks/CMSContext';
 import LoadingPage from './LoadingPage';
+import { Announcement } from '@/lib/types';
 
 const AnnouncementDetailPage = () => {
     const { announcements, loading } = useCMS();
